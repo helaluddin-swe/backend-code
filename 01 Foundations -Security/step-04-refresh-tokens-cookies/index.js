@@ -34,6 +34,12 @@ app.get('/api/products/:id',async(req,res)=>{
 
   res.status(200).json({product})
 })
+// creating new products:/api/products
+app.post("/api/products",(req,res)=>{
+  const newProduct=req.body
+  newProduct.id=crypto.randomUUID()
+  res.status(201).json(newProduct)
+})
 
 
 
