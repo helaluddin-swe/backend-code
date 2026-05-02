@@ -2,6 +2,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "nodemon": "^3.1.14"
   },
   "name": "step-04-refresh-tokens-cookies",
@@ -12,7 +13,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev":"nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
