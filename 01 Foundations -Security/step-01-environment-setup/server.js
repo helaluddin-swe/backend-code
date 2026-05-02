@@ -1,15 +1,47 @@
 const express = require("express");
+const { storage } = require("./config/multer");
+const multer=require('multer');
 const app = express();
+
 
 // Configuration
 const PORT = 5001;
 
+const upload=multer({storage:storage,limits:1024000})
+app.use(upload.single('image'))
 // Global Middleware
 app.use(express.json());
+app.get('/',(req,res)=>{
+  res.send("API is running")
+})
+// form data handling
 
+// to fix =undefined in console for req.body add urlencoded
+app.use(express.urlencoded({extended:true}))
+app.get('/form',(req,res)=>{
+  console.log(req.body)
+  console.log(req.file)
+  res.send("Form Received")
+})
+
+// Start Server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
+/*
+app.use(((req,res,next)=>{
+  console.log("A message is request come at "+Date.now())
+  next()
+}))
+// handle image or public file static file
+app.use('/images',express.static('images'))
+app.use('/resume',express.static('public'))
+// set ejs
+app.set('view engine', 'ejs')
 // --- Basic Routes ---
 app.get("/", (req, res) => {
-  res.send("API is running...");
+  const username="Helal Uddin"
+  res.render('index',{username})
 });
 
 app.get("/about", (req, res) => {
@@ -66,11 +98,14 @@ app.get('/things/:name/:id', (req, res) => {
 // --- Error Handling ---
 
 // 404 Catch-all handler
-app.use((req, res) => {
-  res.status(404).json({ message: "Route not found" });
-});
-
-// Start Server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+// app.use((req, res) => {
+//   res.status(404).json({ message: "Route not found" });
+// });
+app.use('/error',(req,res)=>{
+  throw new Error("This is test error")
+})
+app.use((err,req,res,next)=>{
+  console.error(err.message)
+  res.send("Internal Server ERROR")
+})
+*/
