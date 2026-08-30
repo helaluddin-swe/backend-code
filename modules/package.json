@@ -1,0 +1,21 @@
+{
+  "name": "modules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01-crypto-module.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "01": "node src/01-crypto-module.js",
+    "02": "node src/02-password-hashing.js",
+    "03": "node src/03-hmac-hash.js",
+    "04": "node src/04-aes-encycrpt-decrypt.js",
+    "05": "node src/05-express-hello-world.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

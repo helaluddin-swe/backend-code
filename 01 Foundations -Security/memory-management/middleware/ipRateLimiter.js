@@ -8,6 +8,7 @@ export const ipRateLimiter=async(req,res,next)=>{
   if(!status.allowed){
     return res.status(429).json({error:"Your are out of limit .Try 1 minitues later"})
   }
+  next()
 }
 export const userRateLimiter=async(req,res,next)=>{
   const key=`user_${user.userId}`
@@ -17,4 +18,5 @@ export const userRateLimiter=async(req,res,next)=>{
   if(!status.allowed){
     return res.status(429).json({error:"Your accont request limit acceeded .Try again later"})
   }
+  next()
 }

@@ -1,0 +1,2 @@
+1.get all user data 
+GET api/users 
